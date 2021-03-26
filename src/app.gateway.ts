@@ -1,4 +1,4 @@
-import { Logger } from '@nestjs/common';
+import { Logger, Res } from '@nestjs/common';
 import { OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit, SubscribeMessage, WebSocketGateway, WsResponse } from '@nestjs/websockets';
 import { Socket, Server } from 'socket.io';
 
@@ -12,19 +12,20 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
   }
 
   @SubscribeMessage('message')
-  handleMessage(client: Socket, text: string): WsResponse<string> {
+  handleMessage(client: Socket, json: any): WsResponse<any> {
+    this._logger.log('Socket recebido! ' + json.data + ' | ' + client.id);
     return {
       event: 'messageToClient',
-      data: 'Hello World!'
+      data: 'Tome essa resposta aê!'
     };
   }
 
   handleConnection(client: Socket, ...args: any[]) {
-    this._logger.log('Connected: ' + client.id);
+    this._logger.log('Conectado: ' + client.id);
   }
 
   handleDisconnect(client: Socket) {
-    this._logger.log('Disconnected: ' + client.id);
+    this._logger.log('Desconectado: ' + client.id);
   }
 
 }

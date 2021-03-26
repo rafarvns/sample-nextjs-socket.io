@@ -9,3 +9,7 @@ $ npm g gateway GatewayName
 $ npm i
 $ npm run start:dev
 ```
+### For tests, download firecamp.io
+```nodejs
+https://firecamp.io/
+```
