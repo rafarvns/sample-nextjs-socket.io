@@ -4,3 +4,8 @@
 ```nodejs
 $ npm g gateway GatewayName
 ```
+### Running
+```nodejs
+$ npm i
+$ npm run start:dev
+```
