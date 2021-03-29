@@ -8,12 +8,12 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
   private _logger: Logger = new Logger('AppGateway');
 
   afterInit(server: Server) {
-    this._logger.log('Initialized!');
+    this._logger.log('Socket.io: Initialized!');
   }
 
   @SubscribeMessage('message')
   handleMessage(client: Socket, json: any): WsResponse<any> {
-    this._logger.log('Socket recebido! ' + json.data + ' | ' + client.id);
+    this._logger.log('Socket.io: Socket recebido! ' + json.data + ' | ' + client.id);
     return {
       event: 'messageToClient',
       data: 'Tome essa resposta aê!'
@@ -21,11 +21,11 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
   }
 
   handleConnection(client: Socket, ...args: any[]) {
-    this._logger.log('Conectado: ' + client.id);
+    this._logger.log('Socket.io: Conectado: ' + client.id);
   }
 
   handleDisconnect(client: Socket) {
-    this._logger.log('Desconectado: ' + client.id);
+    this._logger.log('Socket.io: Desconectado: ' + client.id);
   }
 
 }
